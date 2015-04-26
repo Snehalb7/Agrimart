@@ -11,7 +11,7 @@ class TradersController < ApplicationController
             redirect_to root_path
         else
             @farmer = Farmer.new   #used for rendering frm form
-            render "signups/new"
+            render "signups/new" , layout: false
         end
  
     end

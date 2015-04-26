@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
+        
+            <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+            <%= csrf_meta_tags %>
+        
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -56,7 +61,7 @@
                         <% if @trader.errors.any? %>
 
                             <div style="color:red; text-align:center" class="error_messages">    
-                                <h2>form invalid</h2>
+                            <h3>Form invalid</h3>
                             <ul>
                             <% for message in @trader.errors.full_messages %>
                                 <li><%=message%>    
@@ -69,7 +74,9 @@
                 
                 <%= form_for @trader, :html => {:multipart => true} do |f|%>
                  <div  style="color:grey; text-align:center"  class="form-inner">
-                   <div class="form-group">
+                  
+                    <br> 
+                    <div class="form-group">
 			           
                        <div class="col-md-3">
                        <label class="control-label">Name</label>
@@ -180,7 +187,7 @@
 				<% if @farmer.errors.any? %>
 
                 <div style="color:red; text-align:center" class="error_messages">    
-                    <h2>form invalid</h2>
+                    <h3>Form invalid</h3>
                     <ul>
                 <% for message in @farmer.errors.full_messages %>
                         <li><%=message%>
@@ -193,7 +200,8 @@
                 
                 <%= form_for @farmer, :html => {:multipart => true} do |f|%>
                  <div  style="color:grey; text-align:center"  class="form-inner">
-                   <div class="form-group">
+                   <br>
+                     <div class="form-group">
 			           
                        <div class="col-md-3">
                        <label class="control-label">Name</label>
