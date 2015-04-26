@@ -11,7 +11,7 @@
 		<link rel="shortcut icon" href="../favicon.ico">
 		<link rel="stylesheet" type="text/css" href="assets/signup/demo.css" />
 		<link rel="stylesheet" type="text/css" href="assets/signup/component.css" />
-		<script src="js/modernizr.custom.js"></script>
+		<script src="assets/signup/modernizr.custom.js"></script>
 		
 		<link rel="shortcut icon" href="../favicon.ico">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
@@ -51,11 +51,24 @@
 					<div class="page-inner">
 				    <section>
                         <h2>Trader SignUp</h2>
-								<div class="form-horizontal templatemo-create-account templatemo-container">
+				        <div class="form-horizontal templatemo-create-account templatemo-container">
 				
+                        <% if @trader.errors.any? %>
+
+                            <div style="color:red; text-align:center" class="error_messages">    
+                                <h2>form invalid</h2>
+                            <ul>
+                            <% for message in @trader.errors.full_messages %>
+                                <li><%=message%>    
+                                    <%end%>
+                                </li>   
+                            </ul>
+                            </div>
+                        <%end%>
+
                 
                 <%= form_for @trader, :html => {:multipart => true} do |f|%>
-                 <div  style="color:skyblue; text-align:center"  class="form-inner">
+                 <div  style="color:grey; text-align:center"  class="form-inner">
                    <div class="form-group">
 			           
                        <div class="col-md-3">
@@ -85,29 +98,62 @@
 			            <label for="password" class="control-label">Confirm Password</label>
                         <%= f.text_field :password_confirmation , :class => "form-control"%>
 			          </div>
-			        </div>
+			        </div><br>
 
-
-<p>
-    <%= f.label :dist %> <br>
-    <%= f.text_field :district_id %> <br>
-</p>
-
-<p>
-    <%= f.label :tal %> <br>
-    <%= f.text_field :taluka_id %> <br>
-</p>
-
-<p>
-    <%= f.label :pincode %> <br>
-    <%= f.text_field :pincode %> <br>
-</p>
-        
-<p>
-    <%= f.label :address %> <br>
-    <%= f.text_field :address %> <br>
-</p>
-                        
+                     
+                    <div class="form-group">
+			          <div class="col-md-2">
+			            <label class="control-label">District</label>
+                        </div>  
+                      <div class="col-md-4">    
+                          <%= f.collection_select :district_id, District.order(:name), :id, :name, :include_blank => "select" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label class="control-label">Taluka</label>
+                      
+                          <%= f.grouped_collection_select :taluka_id, District.order(:name), :talukas, :name, :id, :name, :include_blank => "select" %>
+			          </div>
+			        </div><br>
+                     
+                                         <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Town/locality</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :address , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Pincode</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :pincode , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">License No</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :license_no , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label class="control-label">Telephone number</label>                      
+			          </div>
+                      <div class="col-md-6">
+                         <%= f.text_field :phone_no, :class => "form-control" %>
+                      </div>
+                    </div><br>
+                     
 <p>
     <%= f.submit "SignUp" , :class => "btn btn-info square-btn-adjust" %> <br>
 </p>
@@ -131,24 +177,22 @@
                         <h2>Farmer SignUp</h2>
 						
 			<div class="form-horizontal templatemo-create-account templatemo-container">
-				
-                <%= form_for @user do |f| %>
-                <% if @user.errors.any? %>
+				<% if @farmer.errors.any? %>
 
-                <div class="error_messages">
+                <div style="color:red; text-align:center" class="error_messages">    
                     <h2>form invalid</h2>
                     <ul>
-                        <% for message in @user.errors.full_messages %>
+                <% for message in @farmer.errors.full_messages %>
                         <li><%=message%>
-                            <%end%>
-                        </li>   
+                <%end%>
+                </li>   
                     </ul>
                 </div>
                 <%end%>
 
                 
                 <%= form_for @farmer, :html => {:multipart => true} do |f|%>
-                 <div  style="color:skyblue; text-align:center"  class="form-inner">
+                 <div  style="color:grey; text-align:center"  class="form-inner">
                    <div class="form-group">
 			           
                        <div class="col-md-3">
@@ -178,28 +222,53 @@
 			            <label for="password" class="control-label">Confirm Password</label>
                         <%= f.text_field :password_confirmation , :class => "form-control"%>
 			          </div>
+			        </div><br>
+
+                     
+                    <div class="form-group">
+			          <div class="col-md-2">
+			            <label class="control-label">District</label>
+                        </div>  
+                      <div class="col-md-4">    
+                          <%= f.collection_select :district_id, District.order(:name), :id, :name, :include_blank => "select" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label class="control-label">Taluka</label>
+                      
+                          <%= f.grouped_collection_select :taluka_id, District.order(:name), :talukas, :name, :id, :name, :include_blank => "select" %>
+			          </div>
 			        </div>
 
-
-<p>
-    <%= f.label :dist %> <br>
-    <%= f.text_field :district_id %> <br>
-</p>
-
-<p>
-    <%= f.label :tal %> <br>
-    <%= f.text_field :taluka_id %> <br>
-</p>
-
-<p>
-    <%= f.label :pincode %> <br>
-    <%= f.text_field :pincode %> <br>
-</p>
-        
-<p>
-    <%= f.label :address %> <br>
-    <%= f.text_field :address %> <br>
-</p>
+                     <br>
+   
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Town/locality</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :address , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Pincode</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :pincode , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label class="control-label">Telephone number</label>                      
+			          </div>
+                      <div class="col-md-6">
+                         <%= f.text_field :phone_no, :class => "form-control" %>
+                      </div>
+                    </div><br>
    
 <p>                   
     <%= f.submit "SignUp" , :class => "btn btn-info square-btn-adjust" %> <br>

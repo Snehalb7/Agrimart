@@ -8,15 +8,16 @@ class TradersController < ApplicationController
        
         @trader = Trader.new(trader_params)      
         if @trader.save
-            redirect_to root_path ,notice=>"success"
+            redirect_to root_path
         else
-            render "new"
+            @farmer = Farmer.new   #used for rendering frm form
+            render "signups/new"
         end
  
     end
 
     def trader_params
-        params.require(:trader).permit(:name, :email, :password, :password_confirmation, :district_id, :taluka_id, :pincode, :address)
+        params.require(:trader).permit(:name, :email, :password, :password_confirmation, :district_id, :taluka_id, :address, :pincode, :license_no, :phone_no)
     end
     
 end
