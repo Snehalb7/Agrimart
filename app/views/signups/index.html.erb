@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+        
+            <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+            <%= csrf_meta_tags %>
+        
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>AgriMart | signup</title>
+		<meta name="description" content="Blueprint: Split Layout" />
+		<meta name="keywords" content="website template, layout, css3, transition, effect, split, dual, two sides, portfolio" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="assets/signup/demo.css" />
+		<link rel="stylesheet" type="text/css" href="assets/signup/component.css" />
+		<script src="assets/signup/modernizr.custom.js"></script>
+		
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+        <link href="assets/signup/form/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/signup/form/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/signup/form/templatemo_style.css" rel="stylesheet" type="text/css">	
+		
+
+	</head>
+	<body>
+		<div class="container">
+			<div id="splitlayout" class="splitlayout">
+				<div class="intro">
+					<div class="side side-left">
+						<header class="codropsheader clearfix">
+							
+							<h1 style="font-size:200%">AgriMart</h1>
+						
+						</header>
+						<div class="intro-content">
+							<div class="profile"><img src="assets/signup/profile1.jpg" alt="profile1"></div>
+							<h1><span>Farmer</span><span>SignUp</span></h1>
+						</div>
+						<div class="overlay"></div>
+					</div>
+					<div class="side side-right">
+						<div class="intro-content">
+							<div class="profile"><img src="assets/signup/profile2.jpg" alt="profile2"></div>
+							<h1><span>Trader</span><span>SignUp</span></h1>
+						</div>
+						<div class="overlay"></div>
+					</div>
+				</div><!-- /intro -->
+                
+                
+				<div class="page page-right">
+					<div class="page-inner">
+				    <section>
+                        <h2>Trader SignUp</h2>
+				        <div class="form-horizontal templatemo-create-account templatemo-container">
+				
+                        <% if @trader.errors.any? %>
+
+                            <div style="color:red; text-align:center" class="error_messages">    
+                            <h3>Form invalid</h3>
+                            <ul>
+                            <% for message in @trader.errors.full_messages %>
+                                <li><%=message%>    
+                                    <%end%>
+                                </li>   
+                            </ul>
+                            </div>
+                        <%end%>
+
+                
+                <%= form_for @trader, :html => {:multipart => true} do |f|%>
+                 <div  style="color:grey; text-align:center"  class="form-inner">
+                  
+                    <br> 
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Name</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :name , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Email</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :email , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                    
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Password</label>
+                          <%= f.text_field :password, :class => "form-control" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Confirm Password</label>
+                        <%= f.text_field :password_confirmation , :class => "form-control"%>
+			          </div>
+			        </div><br>
+
+                     
+                    <div class="form-group">
+			          <div class="col-md-2">
+			            <label class="control-label">District</label>
+                        </div>  
+                      <div class="col-md-4">    
+                          <%= f.collection_select :district_id, District.order(:name), :id, :name, :include_blank => "select" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label class="control-label">Taluka</label>
+                      
+                          <%= f.grouped_collection_select :taluka_id, District.order(:name), :talukas, :name, :id, :name, :include_blank => "select" %>
+			          </div>
+			        </div><br>
+                     
+                                         <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Town/locality</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :address , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Pincode</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :pincode , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">License No</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :license_no , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label class="control-label">Telephone number</label>                      
+			          </div>
+                      <div class="col-md-6">
+                         <%= f.text_field :phone_no, :class => "form-control" %>
+                      </div>
+                    </div><br>
+                     
+<p>
+    <%= f.submit "SignUp" , :class => "btn btn-info square-btn-adjust" %> <br>
+</p>
+
+<%end%>
+
+                
+                
+                
+                </div>			    	
+		      </div>		      
+
+                    </section>
+                    </div><!-- /page-inner -->
+				</div><!-- /page-right -->
+				
+                
+                <div class="page page-left">
+					<div class="page-inner"  >
+						<section>
+                        <h2>Farmer SignUp</h2>
+						
+			<div class="form-horizontal templatemo-create-account templatemo-container">
+				<% if @farmer.errors.any? %>
+
+                <div style="color:red; text-align:center" class="error_messages">    
+                    <h3>Form invalid</h3>
+                    <ul>
+                <% for message in @farmer.errors.full_messages %>
+                        <li><%=message%>
+                <%end%>
+                </li>   
+                    </ul>
+                </div>
+                <%end%>
+
+                
+                <%= form_for @farmer, :html => {:multipart => true} do |f|%>
+                 <div  style="color:grey; text-align:center"  class="form-inner">
+                   <br>
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Name</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :name , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Email</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :email , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                    
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Password</label>
+                          <%= f.text_field :password, :class => "form-control" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Confirm Password</label>
+                        <%= f.text_field :password_confirmation , :class => "form-control"%>
+			          </div>
+			        </div><br>
+
+                     
+                    <div class="form-group">
+			          <div class="col-md-2">
+			            <label class="control-label">District</label>
+                        </div>  
+                      <div class="col-md-4">    
+                          <%= f.collection_select :district_id, District.order(:name), :id, :name, :include_blank => "select" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label class="control-label">Taluka</label>
+                      
+                          <%= f.grouped_collection_select :taluka_id, District.order(:name), :talukas, :name, :id, :name, :include_blank => "select" %>
+			          </div>
+			        </div>
+
+                     <br>
+   
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Town/locality</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :address , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Pincode</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :pincode , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-6">
+			            <label class="control-label">Telephone number</label>                      
+			          </div>
+                      <div class="col-md-6">
+                         <%= f.text_field :phone_no, :class => "form-control" %>
+                      </div>
+                    </div><br>
+   
+<p>                   
+    <%= f.submit "SignUp" , :class => "btn btn-info square-btn-adjust" %> <br>
+</p>                    
+
+
+<%end%>
+
+                
+                
+                
+                </div>			    	
+		      </div>		      
+		
+						</section>
+						
+					</div><!-- /page-inner -->
+				</div><!-- /page-left -->
+				<a href="#" class="back back-right" title="back to intro">&rarr;</a>
+				<a href="#" class="back back-left" title="back to intro">&larr;</a>
+			</div><!-- /splitlayout -->
+		</div><!-- /container -->
+		<script src="assets/signup/classie.js"></script>
+		<script src="assets/signup/cbpSplitLayout.js"></script>
+	</body>
+</html>
