@@ -69,10 +69,15 @@
           				<span class="icon-bar"></span>
           				<span class="icon-bar"></span>
                       </button>
+<<<<<<< HEAD
                      
                         <%= link_to 'b' , root_path , :class=>"navbar-brand logo"%>
                         
                     </div>
+=======
+                      <a href="/" class="navbar-brand logo">b</a>
+                  	</div>
+>>>>>>> c0db25eefa1d92d648b89c380e80e45112cb561b
                   	<nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
                         <div class="input-group input-group-sm" style="padding-top:8px;max-width:360px;">
@@ -87,7 +92,11 @@
                         <a href="/posts"><img src="/assets/home.png" alt="img" height = "30" width  = "30"></img> Home</a>
                       </li>
                       <li>
+<<<<<<< HEAD
                         <a href="/profiles"><img src="/assets/passport.png" alt="img" height = "30" width  = "30"></img> Profile</a>
+=======
+                        <a href="/profile"><img src="/assets/passport.png" alt="img" height = "30" width  = "30"></img> Profile</a>
+>>>>>>> c0db25eefa1d92d648b89c380e80e45112cb561b
                       </li>
                       <li>
                         <a href="/stats"><img src="/assets/bill.png" alt="img" height = "30" width  = "30"></img> Stats</a>
@@ -97,9 +106,19 @@
                     </ul>
                     <div style="color: #FFF; padding: 15px 10px 5px 50px; float: right; font-size: 16px;">
         
+<<<<<<< HEAD
 
                     <a href="/logouts" class="btn btn-warning square-btn-adjust-logout">Logout</a>
                        
+=======
+                        <% if current_user %>
+
+                        <%=user_type %>
+        
+
+                    <a href="/log_out" class="btn btn-warning square-btn-adjust-logout">Logout</a>
+                       <%end%>
+>>>>>>> c0db25eefa1d92d648b89c380e80e45112cb561b
                   </div>
                   	</nav>
                 </div>

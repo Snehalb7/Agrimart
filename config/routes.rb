@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
     
         root to:  'sessions#new'
@@ -9,6 +10,16 @@ Rails.application.routes.draw do
     resources :profiles
     resources :logouts
     resources :searches
+=======
+ 
+    root to:  'sessions#new'
+    resources :farmers
+    resources :traders
+    resources :signups
+    resources :sessions
+    
+   
+>>>>>>> c0db25eefa1d92d648b89c380e80e45112cb561b
     
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

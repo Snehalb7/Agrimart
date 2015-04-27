@@ -1,4 +1,5 @@
 class TradersController < ApplicationController
+<<<<<<< HEAD
         def index
         if session[:farmer_id]
             @user = Farmer.find(session[:farmer_id])
@@ -8,6 +9,9 @@ class TradersController < ApplicationController
             redirect_to root_path
         end
     end
+=======
+
+>>>>>>> c0db25eefa1d92d648b89c380e80e45112cb561b
     
     def create
        
