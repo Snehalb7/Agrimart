@@ -1,0 +1,39 @@
+<h2>Edit Profile</h2>
+
+
+<%= form_for(@user) do |f| %>
+  <ul>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <h4>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </h4>
+  <h4>
+    <%= f.label :address %><br />
+    <%= f.text_area :address %>
+  </h4>
+  <h4>
+    <%= f.label :pincode %><br />
+    <%= f.text_area :pincode %>
+  </h4>
+  <h4>
+    <%= f.label :email %><br />
+    <%= f.text_area :email %>
+  </h4>
+  <h4>
+    <%= f.label :Phone_number %><br />
+    <%= f.text_area :phone_no %>
+  </h4>
+    <% if session[:trader_id] %>
+        <h4>
+            <%= f.label :License_Number %><br />
+            <%= f.text_area :license_no %>
+        </h4>
+    <% end%>
+  <h4>
+    <%= f.submit %>
+</h4>
+<% end %>

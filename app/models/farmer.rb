@@ -1,6 +1,6 @@
 class Farmer < ActiveRecord::Base
-    
-    
+
+        
     belongs_to :district, :counter_cache => true
     belongs_to :taluka, :counter_cache => true
     
@@ -13,9 +13,9 @@ class Farmer < ActiveRecord::Base
     validates_uniqueness_of :email   
     
     def self.authenticate(email,password)
-        user = find_by_email(email)
-        if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-            user
+        farmer = find_by_email(email)
+        if farmer && farmer.password_hash == BCrypt::Engine.hash_secret(password, farmer.password_salt)
+            farmer
             else
             nil
         end
@@ -27,4 +27,5 @@ class Farmer < ActiveRecord::Base
             self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
         end
     end
+
 end

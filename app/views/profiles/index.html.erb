@@ -1,0 +1,30 @@
+ <table >
+     
+     <h4><%= link_to 'Edit', edit_profile_path(@user)  %></h4>
+     <tr>
+        <h4>Name : <%= @user.name%></h4>
+     </tr>
+     <tr>
+        <h4>Email : <%= @user.email%></h4>
+     </tr>
+     <tr>
+        <h4>District : <%= District.find_by_id(@user.district_id).name%>
+        </h4>
+     </tr>
+     <tr>
+        <h4>Taluka : <%= Taluka.find_by_id(@user.taluka_id).name%>
+        </h4>
+     </tr>
+     <tr>
+        <h4>Address : <%= @user.address%>
+        </h4> 
+     </tr>
+     <tr>
+        <h4>Pincodes : <%= @user.pincode%>
+        </h4> 
+     </tr>
+     <tr>
+        <h4>Phone Number : <%= @user.phone_no%>
+        </h4> 
+     </tr>
+</table> 

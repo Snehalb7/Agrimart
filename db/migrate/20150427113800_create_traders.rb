@@ -12,7 +12,8 @@ class CreateTraders < ActiveRecord::Migration
         t.string :address
         t.string :phone_no
         t.string :license_no
-        t.timestamps null: false
+        
+      t.timestamps null: false
     end
   end
 end

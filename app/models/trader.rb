@@ -1,5 +1,5 @@
 class Trader < ActiveRecord::Base
-
+    
     belongs_to :district, :counter_cache => true
     belongs_to :taluka, :counter_cache => true
     
@@ -26,6 +26,5 @@ class Trader < ActiveRecord::Base
             self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
         end
     end
-
 
 end
