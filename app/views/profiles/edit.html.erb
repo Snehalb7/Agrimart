@@ -1,0 +1,74 @@
+
+<div class="container">            
+
+ <div class="col-md-8">
+<h1>Update Profile</h1>    
+        <%= form_for @user, :html => {:multipart => true} do |f|%>
+                 <div  style="color:grey; text-align:center"  class="form-inner">
+                   <br>
+                     <div class="form-group">
+			           
+                       <div class="col-md-4">
+                       <label class="control-label">Name</label>
+                       </div>
+                       <div class="col-md-8">
+                        <%= f.text_field :name , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+    
+                     <div class="form-group">
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Password</label>
+                          <%= f.text_field :password, :class => "form-control" %>
+			          </div>
+			          <div class="col-md-6">
+			            <label for="password" class="control-label">Confirm Password</label>
+                        <%= f.text_field :password_confirmation , :class => "form-control"%><br>
+			          </div>
+			        </div>
+
+                    <div class="form-group">
+			           
+                       <div class="col-md-4">
+                       <label class="control-label">Town/locality</label>
+                       </div>
+                       <div class="col-md-8">
+                        <%= f.text_field :address , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-4">
+                       <label class="control-label">Pincode</label>
+                       </div>
+                       <div class="col-md-8">
+                        <%= f.text_field :pincode , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-4">
+			            <label class="control-label">Telephone number</label>                      
+			          </div>
+                      <div class="col-md-8">
+                         <%= f.text_field :phone_no, :class => "form-control" %><br>
+                      </div>
+                    </div>
+                    
+                     <div class="form-group">
+			           
+                       <div class="col-md-4">
+                          
+                       </div>
+                       <div class="col-md-8">
+                            <%= f.submit "Update profile" , :class => "btn btn-info square-btn-adjust" %> <br><br>
+                       </div>
+                    </div>
+
+ 
+
+<%end%>
+</div>
+    </div>
+</div>

@@ -1,5 +1,12 @@
 class TradersController < ApplicationController
 
+    def index
+        
+        if !(current_user && user_type == "trader")
+            redirect_to root_path
+        end
+        
+    end
     
     def create
        
@@ -15,6 +22,13 @@ class TradersController < ApplicationController
 
     def trader_params
         params.require(:trader).permit(:name, :email, :password, :password_confirmation, :district_id, :taluka_id, :address, :pincode, :license_no, :phone_no)
+    end
+    
+    def update
+        @user = Trader.find(params[:id])
+        @user.update(trader_params)
+        flash.notice = "Profile Updated!"
+        redirect_to profiles_path
     end
     
 end

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       
       a=params[:status]
       
-      session[:who] = a
+      session[:user_type] = a
       
       if a=="farmer"
         
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   end
     
       def destroy
-        session[:farmer_id] = nil
+        session[:user_id] = nil
         redirect_to log_in_path 
       end
 

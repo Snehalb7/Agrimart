@@ -9,13 +9,16 @@ class ApplicationController < ActionController::Base
     private
     
     def current_user
-        @current_user ||=User.find(session[:user_id]) if session[:user_id]
+        if user_type == "farmer"
+        @current_user ||=Farmer.find(session[:user_id]) if session[:user_id]
+        else
+        @current_user ||=Trader.find(session[:user_id]) if session[:user_id]    
+        end
     end
     
     def user_type
-        @user_type = session[:who]
+        @user_type = session[:user_type]
     end
-
 
 
 end
