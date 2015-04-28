@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :posts
     resources :requests
     
+    resources :posts do
+    resources :requests
+    end
     get "" => "sessions#new" , :as => "log_in"
     get "log_out" => "sessions#destroy" , :as => "log_out"
        

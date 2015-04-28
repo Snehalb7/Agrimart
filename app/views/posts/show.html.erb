@@ -3,15 +3,21 @@
 <% @district = District.find(Farmer.find(@post.farmer_id).district_id).name%>
 <% @taluka = Taluka.find(Farmer.find(@post.farmer_id).taluka_id).name%>
 <% @address = Farmer.find(@post.farmer_id).address%>
-
-
+<head>
+    <script>
+function showDiv() {
+   document.getElementById('FormDiv').style.display = "block";
+}
+        
+  $('#myButton').click(function() {
+  $('#FormDiv').toggle('slow', function() {
+    // Animation complete.
+  });
+});
+        
+</script>    
+</head>
 <table >
-     <% if user_type == "trader"%>
-    
-    <a href="/requests/new/<%=@post.id%>">
-        <input class='btn btn-success square-btn-adjust' type='submit' value='view post'>
-    </a>
-    <% end%>
      <tr>
         <h4>Post Title : <%= @post.title%></h4>
      </tr>
@@ -51,3 +57,55 @@
      
         
 </table> 
+
+    <% if user_type == "trader"%>
+    <input id="myButton" class='btn btn-info square-btn-adjust' type='submit' value='Send request now'>   
+    <% end%>
+ 
+
+<div id="FormDiv"  style="display:none;" class="answer_list" > 
+
+<h2>Send Request</h2>
+<%= form_for([@post, @post.requests.build]) do |f| %>
+  <div  style="color:grey; text-align:center"  class="form-inner">
+                  
+                    <br> 
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Request Title</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :title , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                    
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Quantity</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :quantity , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Bidding Price</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :bid_price , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                    
+<p>
+    <%= f.submit "Send request" , :class => "btn btn-info square-btn-adjust" %> <br>
+</p>
+    
+        </div>
+
+ <%end%>         
+</div>

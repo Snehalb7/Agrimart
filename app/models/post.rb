@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
     
     belongs_to :farmer
-    belongs_to :crop_category
-    belongs_to :crop_name
+    belongs_to :crop_category, :counter_cache => true
+    belongs_to :crop_name, :counter_cache => true
     has_many :requests
     
     validates_presence_of :title
