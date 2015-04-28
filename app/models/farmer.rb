@@ -3,6 +3,7 @@ class Farmer < ActiveRecord::Base
     
     belongs_to :district, :counter_cache => true
     belongs_to :taluka, :counter_cache => true
+    has_many :posts
     
     attr_accessor :password
     before_save :encrypt_password

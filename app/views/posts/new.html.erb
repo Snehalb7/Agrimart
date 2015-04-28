@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">	
+</head>
+
+
+            <div class="row">                  <!-- contains inner blank write code here -->
+
+            <div class="col-sm-8">
+        			
+                        <div style="text-align:center;font-size: 38px;">Create posts</div>               
+			<div class="form-horizontal templatemo-create-account templatemo-container-post">
+				<% if @post.errors.any? %>
+
+                <div style="color:red; text-align:center" class="error_messages">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                                <h3>Form invalid</h3>
+                                <ul style="text-align:left">
+                            <% for message in @post.errors.full_messages %>
+                                    <li><%=message%></li>
+                            <%end%>
+
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+                <%end%>
+
+            <%= form_for @post, :html => {:multipart => true} do |f|%>
+
+                 <div  style="color:grey; text-align:center"  class="form-inner">
+                  
+                    <br> 
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Post Title</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :title , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			          <div class="col-md-3">
+			            <label class="control-label">Crop Category</label>
+                        </div>  
+                      <div class="col-md-3">    
+                          <%= f.collection_select :crop_category_id, CropCategory.order(:name), :id, :name, :include_blank => "select" %>
+			          </div>
+			          <div class="col-md-3">
+			            <label class="control-label">Crop Name</label>
+                      </div>
+                        <div class="col-md-3">
+                          <%= f.grouped_collection_select :crop_name_id, CropCategory.order(:name), :crop_names, :name, :id, :name, :include_blank => "select" %><br>
+			          </div>
+			        </div>
+                     
+                       <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Quantity</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :quantity , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Base Price</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :price , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     
+<p>
+    <%= f.submit "Create post" , :class => "btn btn-info square-btn-adjust" %> <br>
+</p>
+    
+        </div>
+
+ <%end%>           
+	           </div>
+        </div>
+</div>
+    
+   

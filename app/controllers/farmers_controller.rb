@@ -4,6 +4,8 @@ class FarmersController < ApplicationController
         
         if !(current_user && user_type == "farmer")
             redirect_to root_path
+        else
+            @posts = Post.where("farmer_id = ?", current_user.id).order('created_at DESC')
         end
             
        

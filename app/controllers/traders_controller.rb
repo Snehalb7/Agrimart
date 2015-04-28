@@ -4,6 +4,8 @@ class TradersController < ApplicationController
         
         if !(current_user && user_type == "trader")
             redirect_to root_path
+        else
+            @posts = Post.all.order('created_at DESC')
         end
         
     end

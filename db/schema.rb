@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426073414) do
+ActiveRecord::Schema.define(version: 20150428073311) do
+
+  create_table "crop_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "posts_count"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "crop_names", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "crop_category_id"
+    t.integer  "posts_count"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "districts", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +48,30 @@ ActiveRecord::Schema.define(version: 20150426073414) do
     t.string   "phone_no"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "farmer_id"
+    t.string   "title"
+    t.integer  "crop_name_id"
+    t.integer  "crop_category_id"
+    t.integer  "quantity"
+    t.integer  "price"
+    t.string   "status"
+    t.integer  "image_id"
+    t.integer  "requests_count"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "tarder_id"
+    t.string   "title"
+    t.integer  "quantity"
+    t.integer  "bid_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "talukas", force: :cascade do |t|

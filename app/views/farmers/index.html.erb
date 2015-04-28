@@ -1,4 +1,91 @@
-<h1>Hello guys</h1>
 
+                      	<div class="row">                  <!-- contains inner blank write code here -->
+                          
+                         <!-- write here to fit in entire white box --> 
+                                                   
+                          <!--  main post-->
 
-hey
+                          <div class="col-sm-9">
+                           <!-- write here to fit in--> 
+
+					<% @posts.each do |post| %>
+
+                    <% @crop_category = CropCategory.find(post.crop_category_id).name %>
+                    <% @crop_name = CropName.find(post.crop_name_id).name %>
+	
+	
+
+					<div class='panel panel-default'>
+                                 <div class='panel-heading'>
+                                 <div style='color: #FFF;float: right; font-size: 16px;'>
+                                <a href="/posts/<%=post.id%>">
+                                    <input class='btn btn-success square-btn-adjust' type='submit' value='view post'>
+                                </a>
+                                     
+                            
+                                 </div>
+                                     <h4> <%=post.title%> </h4>
+                                </div>
+                              
+                                  <div class='panel-body-posts'>
+                                    <p><img src='/assets/crops/<%=@crop_name%>.png' alt='img' class='img-circle pull-right'> 
+                                      <h4>Details</h4>
+                                    
+                                    Crop name : <%=@crop_category%><br>                                                       
+                                    Crop Category : <%=@crop_name%><br>
+                                    Price : <%=post.price%><br>
+                                    Quantity : <%=post.quantity%> units<br>
+                                    Status: <%=post.status%></p>
+                                    <div class='clearfix'></div>
+                                    <hr>
+                                    <p>Requests:</p>
+                                    
+                                    request from traders
+                        
+                                  </div>
+                               </div>
+        			 <%end%>
+            </div>
+                      
+                      <!--  Create post button and Adds-->
+                      <div class="col-sm-3" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"><img src="/assets/bill.png" alt="img" height = "50" width  = "50"></img>  Create Post</p>
+                                  <p>Ready to sell?</p>
+                                  <div style='color: #FFF;float: center; font-size: 16px;'>
+                                       <a href='/posts/new' class='btn btn-info square-btn-adjust'>Create Post</a>
+                                  </div>
+                                 
+                                  </div>
+                              </div>
+                              <hr style="border-style:dashed">
+                      </div>
+
+                      <div class="col-sm-3" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"> Dhulia bhaje</p>
+                                  <p>special bhaje made by jaina-mama</p>
+                                  </div>
+                              </div>
+                      </div>
+
+                      <div class="col-sm-3" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"> Jain drip</p>
+                                  <p>Drips,sprinklers ,pumps</p>
+                                 
+                                  </div>
+                              </div>
+                      </div>
+                      <!--  /Create post button and Adds-->
+
+                      
+                    </div>
+
+                    <!-- /col-9 ........middle blank ends here-->
