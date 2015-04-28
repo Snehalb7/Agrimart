@@ -1,0 +1,53 @@
+<% @crop_category = CropCategory.find(@post.crop_category_id).name %>
+<% @crop_name = CropName.find(@post.crop_name_id).name %>
+<% @district = District.find(Farmer.find(@post.farmer_id).district_id).name%>
+<% @taluka = Taluka.find(Farmer.find(@post.farmer_id).taluka_id).name%>
+<% @address = Farmer.find(@post.farmer_id).address%>
+
+
+<table >
+     <% if user_type == "trader"%>
+    
+    <a href="/requests/new/<%=@post.id%>">
+        <input class='btn btn-success square-btn-adjust' type='submit' value='view post'>
+    </a>
+    <% end%>
+     <tr>
+        <h4>Post Title : <%= @post.title%></h4>
+     </tr>
+     
+    <tr>
+        <h4>Quantity  : <%= @post.quantity%>
+        </h4> 
+     </tr>
+    <tr>
+        <h4>Price  : <%= @post.price %>
+        </h4> 
+     </tr>
+    
+    
+    
+    <tr>
+        <h4>Name of Farmer : <%= Farmer.find_by(@post.farmer_id).name%></h4>
+     </tr>
+    
+    <tr>
+        <h4>Phone Number : <%= Farmer.find_by(@post.farmer_id).phone_no%>
+        </h4> 
+     </tr>
+    
+     <tr>
+        <h4>District : <%= @district%>
+        </h4>
+     </tr>
+     <tr>
+        <h4>Taluka : <%= @taluka%>
+        </h4>
+     </tr>
+     <tr>
+        <h4>Address : <%= @address%>
+        </h4> 
+     </tr>
+     
+        
+</table> 

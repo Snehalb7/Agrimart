@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">	
+</head>
+
+
+            <div class="row">                  <!-- contains inner blank write code here -->
+
+            <div class="col-sm-8">
+        			
+                        <div style="text-align:center;font-size: 38px;">Create Request</div>               
+			<div class="form-horizontal templatemo-create-account templatemo-container-post">
+				<% if @request.errors.any? %>
+
+                <div style="color:red; text-align:center" class="error_messages">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                                <h3>Form invalid</h3>
+                                <ul style="text-align:left">
+                            <% for message in @request.errors.full_messages %>
+                                    <li><%=message%></li>
+                            <%end%>
+
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+                <%end%>
+
+            <%= form_for @post, :html => {:multipart => true} do |f|%>
+
+                 <div  style="color:grey; text-align:center"  class="form-inner">
+                  
+                    <br> 
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Request Title</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :title , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                    
+                     
+                     <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Quantity</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :quantity , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Bidding Price</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :bid_price , :class => "form-control"%> <br>
+                       </div>
+                    </div>
+                     
+                     
+<p>
+    <%= f.submit "Send request" , :class => "btn btn-info square-btn-adjust" %> <br>
+</p>
+    
+        </div>
+
+ <%end%>           
+	           </div>
+        </div>
+</div>
+    
+   
