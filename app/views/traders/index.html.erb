@@ -12,7 +12,7 @@
 
                     <% @crop_category = CropCategory.find(post.crop_category_id).name %>
                     <% @crop_name = CropName.find(post.crop_name_id).name %>
-	
+	                <% @requests = Request.where("post_id = ?", post.id).order("created_at desc")%>
 	
 
 					<div class='panel panel-default'>
@@ -21,8 +21,10 @@
                                 <a href="/posts/<%=post.id%>">
                                     <input class='btn btn-success square-btn-adjust' type='submit' value='view post'>
                                 </a>
+                                     
+                            
                                  </div>
-                                     <h4> <%=post.title%> </h4>
+                                     <h4><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> <%=post.title%> </h4>
                                 </div>
                               
                                   <div class='panel-body-posts'>
@@ -36,12 +38,35 @@
                                     Status: <%=post.status%></p>
                                     <div class='clearfix'></div>
                                     <hr>
-                                    <p>Requests:</p>
+                        
+                                    <% @requests.each do |req|%>
                                     
-                                    request from traders
+                                    <div class="panel panel-default">
+                                      <div class="panel-body" style="text-align:center">
+                                       
+                                    <div class="row">
+                                        
+                                        <div style="text-align:left"class="col-md-4"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Trader : <%=Trader.find(req.tarder_id).name%></div>
+                                        <div class="col-md-3"> 
+                                        <%=Taluka.find((Trader.find(req.tarder_id)).taluka_id).name%> , 
+                                        <%=District.find((Trader.find(req.tarder_id)).district_id).name%>                   
+                                        </div>
+                                        <div class="col-md-3">Bid price : <%=req.bid_price%></div>
+                                        <div class="col-md-2"><%=req.created_at.strftime("%b %d 20%y")%></div>
+                                    </div>
+
+                                      </div>
+                                    </div>
+                                     
+                                    
+                                    <%end%>
                         
                                   </div>
+                              
+                              
                                </div>
+                            
+                            
         			 <%end%>
             </div>
                       

@@ -13,11 +13,9 @@
 		<link href="assets/bootstrap.min.css" rel="stylesheet">
 	    <link href="assets/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
         <link href="assets/templatemo_style.css" rel="stylesheet" type="text/css">	
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">  
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="assets/styles.css" rel="stylesheet">
+    	<link href="assets/styles.css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,19 +39,19 @@
             	</ul>
                
                 <ul class="nav hidden-xs" id="lg-menu">
-                    <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Weather</a></li>
-                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Market Trends</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Govt. schemes</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Top News</a></li>
+                    <li class="active"><a href="http://www.accuweather.com/en/in/india-weather"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Weather</a></li>
+                    <li><a href="http://farmer.gov.in/"><i class="glyphicon glyphicon-stats"></i> Market Trends</a></li>
+                    <li><a href="http://india.gov.in/topics/agriculture"><i class="glyphicon glyphicon-bullhorn"></i> Govt. schemes</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-globe"></i> Top News</a></li>
                 </ul>
                 
               
               	<!-- tiny only nav-->
               <ul class="nav visible-xs" id="xs-menu">
-                  	<li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-                  	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
-                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                  	<li><a href="http://www.accuweather.com/en/in/india-weather" class="text-center"><i class="glyphicon glyphicon-cloud"></i></a></li>
+                    <li><a href="http://farmer.gov.in/" class="text-center"><i class="glyphicon glyphicon-stats"></i></a></li>
+                  	<li><a href="http://india.gov.in/topics/agriculture" class="text-center"><i class="glyphicon glyphicon-bullhorn"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-globe"></i></a></li>
                 </ul>
               <hr style="border-style:dashed">
             </div>
@@ -91,7 +89,7 @@
                         
                         <% if current_user %>
                         <%=current_user.email %>
-                        <a href="/log_out" class="btn btn-warning square-btn-adjust-logout">Logout</a>
+                        <a href="/log_out" class="btn btn-warning square-btn-adjust-logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                         <%end%>        
 
                   

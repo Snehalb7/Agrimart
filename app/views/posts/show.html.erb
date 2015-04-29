@@ -17,58 +17,74 @@ function showDiv() {
         
 </script>    
 </head>
-<table >
-     <tr>
-        <h4>Post Title : <%= @post.title%></h4>
-     </tr>
-     
-    <tr>
-        <h4>Quantity  : <%= @post.quantity%>
-        </h4> 
-     </tr>
-    <tr>
-        <h4>Price  : <%= @post.price %>
-        </h4> 
-     </tr>
-    
-    
-    
-    <tr>
-        <h4>Name of Farmer : <%= Farmer.find_by(@post.farmer_id).name%></h4>
-     </tr>
-    
-    <tr>
-        <h4>Phone Number : <%= Farmer.find_by(@post.farmer_id).phone_no%>
-        </h4> 
-     </tr>
-    
-     <tr>
-        <h4>District : <%= @district%>
-        </h4>
-     </tr>
-     <tr>
-        <h4>Taluka : <%= @taluka%>
-        </h4>
-     </tr>
-     <tr>
-        <h4>Address : <%= @address%>
-        </h4> 
-     </tr>
-     
-        
-</table> 
 
-    <% if user_type == "trader"%>
-    <input id="myButton" class='btn btn-info square-btn-adjust' type='submit' value='Send request now'>   
+
+
+
+
+  <% @crop_category = CropCategory.find(@post.crop_category_id).name %>
+    <% @crop_name = CropName.find(@post.crop_name_id).name %>
+	<% @requests = Request.where("post_id = ?", @post.id).order("created_at desc")%>
+	
+<div class="row">
+<div class="col-md-9">
+
+
+<div class='panel panel-default'>
+                                 <div class='panel-heading'>
+                                 <div style='color: #FFF;float: right; font-size: 16px;'>
+                              
+                                       <% if user_type == "trader"%>
+    <input id="myButton" class='btn btn-warning square-btn-adjust' type='submit' value='Send request now'>    
     <% end%>
  
+                            
+                                 </div>
+                                     <h4><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> <%=@post.title%> </h4>
+                                </div>
+                              
+                                  <div class='panel-body-posts'>
+                                    <p><img src='/assets/crops/<%=@crop_name%>.png' alt='img' class='img-circle pull-right'> 
+                                      <h4>Details</h4>
+                                    
+                                    Crop name : <%=@crop_category%><br>                                                       
+                                    Crop Category : <%=@crop_name%><br>
+                                    Price : <%=@post.price%><br>
+                                    Quantity : <%=@post.quantity%> units<br>
 
+
+                                                                    
+                                    Name of Farmer : <%= Farmer.find(@post.farmer_id).name%><br>
+                                    Phone Number : <%= Farmer.find(@post.farmer_id).phone_no%><br>
+                                    District : <%= @district%><br>
+                                    Taluka : <%= @taluka%><br>
+                                    Address : <%= @address%><br>
+                                                                  
+                                      
+                                    Status: <%=@post.status%></p>
+                                    <div class='clearfix'></div>
+                                    <hr>
+                        
+                                                            
+                                  </div>
+                              
+                              
+                               </div>
+    
+
+   
 <div id="FormDiv"  style="display:none;" class="answer_list" > 
 
-<h2>Send Request</h2>
-<%= form_for([@post, @post.requests.build]) do |f| %>
-  <div  style="color:grey; text-align:center"  class="form-inner">
-                  
+    <div class="row">                  <!-- contains inner blank write code here -->
+
+            <div class="col-sm-8">
+        			
+            <div style="text-align:center;font-size: 38px;">Create Request</div>               
+			<div class="form-horizontal templatemo-create-account templatemo-container-post">
+
+                <%= form_for([@post, @post.requests.build]) do |f| %>
+                <div  style="color:grey; text-align:center"  class="form-inner">
+      
                     <br> 
                     <div class="form-group">
 			           
@@ -80,6 +96,15 @@ function showDiv() {
                        </div>
                     </div>
                     
+                    <div class="form-group">
+			           
+                       <div class="col-md-3">
+                       <label class="control-label">Bidding Price</label>
+                       </div>
+                       <div class="col-md-9">
+                        <%= f.text_field :bid_price , :class => "form-control"%> <br>
+                       </div>
+                    </div>
                      
                      <div class="form-group">
 			           
@@ -91,21 +116,83 @@ function showDiv() {
                        </div>
                     </div>
                      
-                    <div class="form-group">
-			           
-                       <div class="col-md-3">
-                       <label class="control-label">Bidding Price</label>
-                       </div>
-                       <div class="col-md-9">
-                        <%= f.text_field :bid_price , :class => "form-control"%> <br>
-                       </div>
-                    </div>
                     
-<p>
-    <%= f.submit "Send request" , :class => "btn btn-info square-btn-adjust" %> <br>
-</p>
+                    <p>
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                        <%= f.submit "Send request" , :class => "btn btn-info square-btn-adjust" %> <br>
+                    </p>
     
+                </div> <br>
+
+            <%end%>         
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+                            
+                                <% @requests.each do |req|%>
+                                    
+                                    <div class="panel panel-default">
+                                        
+                                        <div class="panel-heading">
+                                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                        <%= req.title%>
+                                        </div>
+                                      <div class="panel-body" style="text-align:center">
+                                       
+                                    <div class="row">
+                                        <div class="col-md-2">Trader : <%=Trader.find(req.tarder_id).name%></div>
+                                        <div class="col-md-3"> 
+                                        <%=Taluka.find((Trader.find(req.tarder_id)).taluka_id).name%> , 
+                                        <%=District.find((Trader.find(req.tarder_id)).district_id).name%>                   
+                                        </div>
+                                        <div class="col-md-2">Bid price : <%=req.bid_price%></div>
+                                        <div class="col-md-2"><%=req.created_at.strftime("%b %d 20%y")%></div>
+                                        <div class="col-md-3">Contact Details: <%=Trader.find(req.tarder_id).phone_no%>
+                                          </div>
+                                    </div>
+                                    </div>
+                                     
+                                    </div> 
+                                    <%end%>
+
+
+</div>
+                    <div class="col-sm-3" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"> Advertisement</p>
+                                  <p>Ad Text</p>
+                                  </div>
+                              </div>
+                      </div>
+
+                      <div class="col-sm-3" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"> Jain drip</p>
+                                  <p>Drips,sprinklers ,pumps</p>
+                                 
+                                  </div>
+                              </div>
+                      </div>
+    
+                      <!--  /Create post button and Adds-->
         </div>
 
- <%end%>         
-</div>
+
+
+
+
+
+
+
+
+
+
+
+

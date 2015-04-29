@@ -7,24 +7,49 @@
 
                           <div class="col-sm-9">
                            <!-- write here to fit in--> 
-
+                    <%if @posts.length==0%>
+                      <div class="jumbotron" style="background-color:lightgrey">
+                          <div style="text-align:center;font-size: 38px;">Welcome to Agrimart</div>               
+                      
+                      <p>
+                          A Web portal to introduce Farmers to much wider market horizons, and fulfill the demands of Traders in most effective ways.   
+                      </p><br> 
+                      <div style="text-align:center;font-size: 28px;">Start by creating a post   </div>           
+                     
+                      <div class="col-sm-12" style="text-align:center">
+                           
+                              <div class="panel panel-default">
+                               <div class="panel-body">
+                                  <p class="lead"><img src="/assets/bill.png" alt="img" height = "50" width  = "50"></img>  Create Post</p>
+                                  <p>Ready to sell?</p>
+                                  <div style='color: #FFF;float: center; font-size: 16px;'>
+                                       <a href='/posts/new' class='btn btn-info square-btn-adjust'>Create Post</a>
+                                  </div>
+                                 
+                                  </div>
+                              </div>
+                              
+                      </div>
+                     </div>
+                      
+                    <%end%>          
+                              
 					<% @posts.each do |post| %>
 
                     <% @crop_category = CropCategory.find(post.crop_category_id).name %>
                     <% @crop_name = CropName.find(post.crop_name_id).name %>
-	
+	                <% @requests = Request.where("post_id = ?", post.id).order("created_at desc")%>
 	
 
 					<div class='panel panel-default'>
                                  <div class='panel-heading'>
                                  <div style='color: #FFF;float: right; font-size: 16px;'>
-                                <a href="/posts/<%=post.id%>">
-                                    <input class='btn btn-success square-btn-adjust' type='submit' value='view post'>
+                                <a href="/posts/<%=post.id%>" class='btn btn-success square-btn-adjust' type='submit'><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>  view post
                                 </a>
                                      
                             
                                  </div>
-                                     <h4> <%=post.title%> </h4>
+                                     <h4><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> <%=post.title%> </h4>
                                 </div>
                               
                                   <div class='panel-body-posts'>
@@ -38,12 +63,34 @@
                                     Status: <%=post.status%></p>
                                     <div class='clearfix'></div>
                                     <hr>
-                                    <p>Requests:</p>
+                        
+                                    <% @requests.each do |req|%>
                                     
-                                    request from traders
+                                    <div class="panel panel-default">
+                                      <div class="panel-body" style="text-align:center">
+                                       
+                                    <div class="row">
+                                        <div class="col-md-4">Trader : <%=Trader.find(req.tarder_id).name%></div>
+                                        <div class="col-md-3"> 
+                                        <%=Taluka.find((Trader.find(req.tarder_id)).taluka_id).name%> , 
+                                        <%=District.find((Trader.find(req.tarder_id)).district_id).name%>                   
+                                        </div>
+                                        <div class="col-md-3">Bid price : <%=req.bid_price%></div>
+                                        <div class="col-md-2"><%=req.created_at.strftime("%b %d 20%y")%></div>
+                                    </div>
+
+                                      </div>
+                                    </div>
+                                     
+                                    
+                                    <%end%>
                         
                                   </div>
+                              
+                              
                                </div>
+                            
+                            
         			 <%end%>
             </div>
                       

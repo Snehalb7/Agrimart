@@ -20,5 +20,11 @@ class ApplicationController < ActionController::Base
         @user_type = session[:user_type]
     end
 
-
+    def is_farmer?
+        if session[:user_type] == "farmer"
+            return true
+        return false
+        end
+    end
+            
 end

@@ -15,7 +15,9 @@ class FarmersController < ApplicationController
        
         @farmer = Farmer.new(farmer_params)      
         if @farmer.save
-            redirect_to root_path
+            session[:user_id] = @farmer.id
+            session[:user_type] = "farmer"
+            redirect_to farmers_path
         else
             @trader = Trader.new    #used for rendering trader form
             render "signups/index", layout: false  

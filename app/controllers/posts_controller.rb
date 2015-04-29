@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
 
     def new
-        @post = Post.new
+        
+        if current_user && user_type == "farmer"
+            @post = Post.new
+        else
+            redirect_to root_path
+        end
+
     end
     
     def create
@@ -22,6 +28,25 @@ class PostsController < ApplicationController
     end
     
     def show
-        @post = Post.find(params[:id])
+        
+        if current_user                                     #logged in or not
+            begin
+                @posts = Post.where("farmer_id = ?", current_user.id)
+                @post = Post.find(params[:id])          
+            rescue                                          #if no post exits
+                redirect_to root_path
+                return
+            end
+                if is_farmer?                               #if farmer , he shouldn't view other's posts
+                begin
+                    @posts.find(@post)
+                rescue
+                    redirect_to farmers_path
+                end
+            end    
+        else
+            redirect_to root_path
+        end
+
     end
 end
