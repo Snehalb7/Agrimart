@@ -7,15 +7,21 @@
 
                           <div class="col-sm-9">
                            <!-- write here to fit in--> 
-                    <%if @posts.length==0%>
-                      <div class="jumbotron" style="background-color:lightgrey">
-                          <div style="text-align:center;font-size: 38px;">Welcome to Agrimart</div>               
+                          
+                    <%if @posts.length==0%>   
+                    <div class="container"> 
+                        <div class="row">
+                        <div class="col-md-10">
+                        <div class="jumbotron">
+                          
+
+<div style="text-align:center;font-size: 46px;">Welcome to Agrimart</div>               
                       
                       <p>
                           A Web portal to introduce Farmers to much wider market horizons, and fulfill the demands of Traders in most effective ways.   
                       </p><br> 
-                      <div style="text-align:center;font-size: 28px;">Start by creating a post   </div>           
-                     
+                      <div style="text-align:center;font-size: 28px;">Start by creating a post   </div><br>           
+                     <div class="row">
                       <div class="col-sm-12" style="text-align:center">
                            
                               <div class="panel panel-default">
@@ -29,9 +35,12 @@
                                   </div>
                               </div>
                               
-                      </div>
-                     </div>
-                      
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                     <%end%>          
                               
 					<% @posts.each do |post| %>
@@ -44,12 +53,11 @@
 					<div class='panel panel-default'>
                                  <div class='panel-heading'>
                                  <div style='color: #FFF;float: right; font-size: 16px;'>
-                                <a href="/posts/<%=post.id%>" class='btn btn-success square-btn-adjust' type='submit'><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>  view post
-                                </a>
+                                <a href="/posts/<%=post.id%>" class='btn btn-success square-btn-adjust' type='submit'><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>  view post </a>
                                      
                             
                                  </div>
-                                     <h4><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> <%=post.title%> </h4>
+                                     <div class="post-title"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> <%=post.title%> </div>
                                 </div>
                               
                                   <div class='panel-body-posts'>
@@ -89,8 +97,6 @@
                               
                               
                                </div>
-                            
-                            
         			 <%end%>
             </div>
                       
@@ -134,5 +140,6 @@
 
                       
                     </div>
+
 
                     <!-- /col-9 ........middle blank ends here-->

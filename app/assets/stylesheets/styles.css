@@ -3,9 +3,9 @@ html, body {
 
 font-family: 'Open Sans', sans-serif;
    color:#555555;
-   font-size: 16px;
-}
+   font-size: 18px;
 
+}
 
 /* our css classes*/
 
@@ -14,15 +14,34 @@ font-family: 'Open Sans', sans-serif;
   background-color: red;
 }
 
+.post-title{
+
+    font-family: 'Open Sans', sans-serif;
+    font-size:22px;
+font-size: 22px;
+font-weight: 300;
+color: #63666A;
+line-height: 1.375;
+
+}
 
 
+.heading{
+
+font-size: 36px;
+font-weight: 300;
+color: #63666A;
+line-height: 1.375;
+
+
+}
 
 
 
 /*end of css for agrimart*/
 .nav {
     font-family: 'Open Sans', sans-serif;
-   font-size:20px;
+    font-size:20px;
 }
 
 a {
@@ -90,8 +109,8 @@ hr {
     box-shadow: 0 1px 2px #272727;          /*here is top nav bar*/
     border-width:0;
     background-color:#008080;
-	  color:#ffffff;
-font-family: 'Open Sans', sans-serif;
+    color:#ffffff;
+
     top:0;
     position:fixed;
     width:inherit;
@@ -222,7 +241,6 @@ h1,h2,h3 {
 }
     
 .jumbotron {
-  background-color:transparent;
 }
 .label-default {
   background-color:#dddddd;
@@ -278,18 +296,19 @@ h1,h2,h3 {
 }
 
 small.text-muted {
-  font-family:courier,courier-new,monospace;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* adjust the contents on smaller devices */
 @media (max-width: 768px) {
 
   .column .padding {
-    padding: 7px;
+    padding-top: 25px;
+    padding: 1px; 
   }
 
   .full{
-	padding-top:20px;
+	padding-top:80px;
   }
 
 
@@ -298,11 +317,15 @@ small.text-muted {
     border-width:0;
     background-color:#008080;
     color:#ffffff;
-    font-family:verdana,sans-serif;
+    font-family: 'Open Sans', sans-serif;
     top:0;
     position:fixed;
     width:inherit;
 }
+    
+
+
+    
 }
 
 
@@ -332,5 +355,7 @@ small.text-muted {
 
   #sidebar, #sidebar a, #sidebar-footer a {
     padding-left:3px;
+    visibility: hidden;
+
   }
 }

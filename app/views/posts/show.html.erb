@@ -139,6 +139,11 @@ function showDiv() {
                                         <div class="panel-heading">
                                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                                         <%= req.title%>
+                                        <div style='float: right; font-size: 16px;'>
+                                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>    
+                                        Date: <%=req.created_at.strftime("%b %d 20%y")%>
+                                        </div>
+
                                         </div>
                                       <div class="panel-body" style="text-align:center">
                                        
@@ -151,7 +156,7 @@ function showDiv() {
                                         <div class="col-md-2">Bid price : <%=req.bid_price%></div>
                                         <div class="col-md-2"><%=req.created_at.strftime("%b %d 20%y")%></div>
                                         <div class="col-md-3">Contact Details: <%=Trader.find(req.tarder_id).phone_no%>
-                                          </div>
+                                        </div>
                                     </div>
                                     </div>
                                      
